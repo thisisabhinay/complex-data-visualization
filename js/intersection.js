@@ -1,5 +1,5 @@
 //The Intersection Observer API
-export default listenerScroll = () => {
+export const listenScroll = () => {
     const sections = [...document.querySelectorAll('.graph')]
 
     const options = {
@@ -9,7 +9,7 @@ export default listenerScroll = () => {
 
     const callback = (entries) => {
         entries.forEach((entry) => {
-            debugger;
+            const { target } = entry;
             if (entry.intersectionRatio >= options.threshold) {
                 target.classList.add("graph-visible");
             } else {
