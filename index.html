@@ -1,41 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- Place favicon.ico in the root directory -->
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="style/interface.css" />
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+    <meta name="theme-color" content="#fafafa" />
+  </head>
 
-  <meta name="theme-color" content="#fafafa">
-</head>
+  <body>
+    <main id="app" class="container"></main>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#graph-questions">Questions</a></li>
+        <li><a href="#graph-prepositions">Prepositions</a></li>
+        <li><a href="#graph-comparisons">Comparisons</a></li>
+        <li><a href="#graph-related-keywords">Related Keywords</a></li>
+      </ul>
+    </nav>
+    <template id="scene-before-search">
+      <div class="wrapper scene-before-search">
+        <div class="search animate__animated animate__fadeInUp">
+          <input id="search-input" type="text" placeholder="Enter Keyword..." />
+          <button id="search-btn">Search</button>
+        </div>
+      </div>
+    </template>
+    <template id="scene-after-search">
+      <div class="wrapper scene-after-search">
+        <div class="col col-left">
+          <div class="animate__animated search-query">
+            <span id="query-value" class="search-query__value"></span>
+            &larr; Back
+          </div>
 
-<body>
+          <div class="animate__animated metric metric-search-volume">
+            <div class="metric__graph"></div>
+            <div class="metric__value">2,125,453,711</div>
+            <div class="metric__label">Search Volume</div>
+          </div>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+          <div class="animate__animated metric metric-kd">
+            <div class="metric__graph"></div>
+            <div class="metric__value">76</div>
+            <div class="metric__label">Keyword Difficulty</div>
+          </div>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
-</body>
+          <div class="animate__animated metric metric-cpc">
+            <div class="metric__graph"></div>
+            <div class="metric__value">8.9</div>
+            <div class="metric__label">Cost-Per-Click</div>
+          </div>
+        </div>
+        <div class="col col-right">
+          <section id="graph-questions" class="animate__animated graph">
+            <div class="plot dendrogram">
+              Dendrogram Questions
+            </div>
+          </section>
 
+          <section id="graph-prepositions" class="animate__animated graph">
+            <div class="plot dendrogram">
+              Dendrogram Prepositions
+            </div>
+          </section>
+
+          <section id="graph-comparisons" class="animate__animated graph">
+            <div class="plot dendrogram">
+              Dendrogram Comparisons
+            </div>
+          </section>
+
+          <section id="graph-related-keywords" class="animate__animated graph">
+            <div class="plot dendrogram">
+              Dendrogram Related Keywords
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </template>
+
+    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <!-- <script src="js/intersection.js" type="module"></script> -->
+
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-XXXXX-Y", "auto");
+      ga("set", "anonymizeIp", true);
+      ga("set", "transport", "beacon");
+      ga("send", "pageview");
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
+  </body>
 </html>

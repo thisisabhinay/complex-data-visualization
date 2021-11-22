@@ -1,0 +1,10 @@
+.search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #EEE;
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+}
+/*# sourceMappingURL=search.css.map */

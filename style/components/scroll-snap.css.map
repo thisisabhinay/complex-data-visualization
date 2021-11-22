@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,gBAAgB,EAAE,WAAW;CAGK;;AAJtC,AAGI,UAHM,CAGN,OAAO,CAAC;EACJ,iBAAiB,EAAE,MAAM;CAAG",
+    "sources": [
+        "scroll-snap.sass"
+    ],
+    "names": [],
+    "file": "scroll-snap.css"
+}
