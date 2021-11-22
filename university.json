@@ -1,0 +1,22 @@
+{
+    "name": "President",
+    "children": [
+        {
+            "name": "VP of Academics",
+            "children": [
+                {
+                    "name": "Dean of Psych"
+                },
+                {
+                    "name": "Dean of Ed"
+                }
+            ]
+        },
+        {
+            "name": "VP of Finance"
+        },
+        {
+            "name": "VP of Students"
+        }
+    ]
+}
