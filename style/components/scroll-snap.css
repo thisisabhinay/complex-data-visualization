@@ -1,0 +1,9 @@
+.col-right {
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
+}
+
+.col-right section {
+  scroll-snap-align: center;
+}
+/*# sourceMappingURL=scroll-snap.css.map */
