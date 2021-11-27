@@ -1,5 +1,5 @@
 //The Intersection Observer API
-export const listenScroll = () => {
+export const applyScrollSnap = () => {
     const sections = [...document.querySelectorAll('.graph')]
 
     const options = {
