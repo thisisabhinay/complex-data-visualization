@@ -28,14 +28,6 @@
 
   <body>
     <main id="app" class="container"></main>
-    <nav class="navbar">
-      <ul>
-        <li><a href="#plot-questions">Questions</a></li>
-        <li><a href="#graph-prepositions">Prepositions</a></li>
-        <li><a href="#graph-comparisons">Comparisons</a></li>
-        <li><a href="#graph-related-keywords">Related Keywords</a></li>
-      </ul>
-    </nav>
     <template id="scene-before-search">
       <div class="wrapper scene-before-search">
         <div class="search animate__animated animate__fadeInUp">
@@ -45,6 +37,14 @@
       </div>
     </template>
     <template id="scene-after-search">
+      <nav class="navbar">
+        <ul>
+          <li><a href="#plot-questions">Questions</a></li>
+          <li><a href="#graph-prepositions">Prepositions</a></li>
+          <li><a href="#graph-comparisons">Comparisons</a></li>
+          <li><a href="#graph-related-keywords">Related Keywords</a></li>
+        </ul>
+      </nav>
       <div class="wrapper scene-after-search">
         <div class="col col-left">
           <div class="animate__animated search-query">
@@ -53,13 +53,13 @@
           </div>
 
           <div class="animate__animated metric metric-search-volume">
-            <div class="metric__graph"></div>
+            <div id="chart-search-volume" class="metric__graph"></div>
             <div class="metric__value">2,125,453,711</div>
             <div class="metric__label">Search Volume</div>
           </div>
 
           <div class="animate__animated metric metric-kd">
-            <div class="metric__graph"></div>
+            <div id="chart-kd" class="metric__graph"></div>
             <div class="metric__value">76</div>
             <div class="metric__label">Keyword Difficulty</div>
           </div>
@@ -103,7 +103,9 @@
     <script src="js/plugins.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/intersection.js"></script>
-    <!-- <script type="module" src="js/d3-dendrogram.js"></script> -->
+    <script type="module" src="js/d3-dendrogram.js"></script>
+    <script type="module" src="js/d3-areachart.js"></script>
+    <script type="module" src="js/d3-linearscale.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
