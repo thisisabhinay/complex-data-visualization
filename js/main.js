@@ -29,11 +29,14 @@ export const randomIntFromInterval = (min, max) => { // min and max included
 
 scene.beforeSearch = appendTemplate("scene-before-search", "app", true);
 
+// Loading Second Scene after "Search" btn click
 scene.beforeSearch.querySelector("#search-btn")
     .addEventListener("click", (e) => {
         e.preventDefault();
 
         input = document.getElementById("search-input");
+        
+        document.body.classList.add("slide-bg");
 
         let sceneLoaded = new Promise((resolve, reject) => {
             scene.afterSearch = appendTemplate("scene-after-search", "app", true);

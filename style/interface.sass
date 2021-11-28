@@ -1,3 +1,6 @@
+@import "var.sass"
+@import "typography.sass"
+@import "animations.sass"
 @import "components/metric.sass"
 @import "components/navbar.sass"
 @import "components/search.sass"
@@ -5,17 +8,30 @@
 @import "components/dendrogram.sass"
 @import "components/scroll-snap.sass"
 
+html
+    font-size: 1.1vh;
+
 body
     font-size: 1rem
-    font-family: sans-serif
-    background-color: #EEE
+    font-family: "Inter", sans-serif
     overflow: hidden
+    color: #FFF
+    background:url("../img/Blob.svg"), #08090C
+    background-position: center center
+    background-repeat: no-repeat
+    background-size: 70%
+    transition: background 300ms ease-in-out
+
+    &.slide-bg
+        background-position: 125% center
+
+// To Be Refactored
 
 .container
-    max-width: 100%
+    max-width: 94vw
     margin: 0 auto
-    background-color: #FFF
     overflow: hidden
+    width: auto
 
 .container .wrapper.scene-before-search
     display: grid
@@ -30,7 +46,6 @@ body
     grid-auto-rows: minmax(10vh, 100vh)
 
 .ph
-    background-color: #DDD
     border-radius: 24px
     padding: 16px
     text-align: center
@@ -55,7 +70,6 @@ body
     align-items: stretch
 
 .col-left
-    background: #f8f9fa
 
 .col-right
     align-items: stretch

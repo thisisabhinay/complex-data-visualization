@@ -59,7 +59,7 @@ export const plotAreaChart = () => {
         .attr("x1", "0")
         .attr("x2", "0")
         .attr("y1", "0")
-        .attr("y2", "1");
+        .attr("y2", "1")
 
     defs.append("stop")
         .attr("offset", "5%")
