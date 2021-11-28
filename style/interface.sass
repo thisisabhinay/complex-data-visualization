@@ -9,14 +9,14 @@
 @import "components/scroll-snap.sass"
 
 html
-    font-size: 1.1vh;
+    font-size: 1.1vh
 
 body
     font-size: 1rem
     font-family: "Inter", sans-serif
     overflow: hidden
     color: #FFF
-    background:url("../img/Blob.svg"), #08090C
+    background: url("../img/Blob.svg"), #08090C
     background-position: center center
     background-repeat: no-repeat
     background-size: 70%
@@ -25,13 +25,17 @@ body
     &.slide-bg
         background-position: 125% center
 
-// To Be Refactored
-
 .container
     max-width: 94vw
     margin: 0 auto
     overflow: hidden
     width: auto
+    position: relative
+
+.col
+    padding: 3.33rem 0
+
+// To Be Refactored
 
 .container .wrapper.scene-before-search
     display: grid
@@ -76,6 +80,15 @@ body
     overflow-x: hidden
     overflow-y: auto
 
+    /* Hiding scrollbars */
+
+    -ms-overflow-style: none // Internet Explorer 10+
+    scrollbar-width: none // Firefox
+    overflow: -moz-scrollbars-none // Older Firefox
+
+    &::-webkit-scrollbar
+        display: none; // Safari and Chrome
+
 // Dendrogram
     .node circle
         fill: #999
@@ -105,11 +118,11 @@ body
         display: block
 
 #plot-questions
-    svg 
+    svg
         width: 100%
         height: 66.666667rem
 
-    circle 
+    circle
         fill: #000
 
     path

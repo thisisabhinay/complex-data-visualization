@@ -41,17 +41,62 @@ body {
 }
 
 .navbar {
-  position: a;
-  top: 0;
+  position: absolute;
+  top: 3.33rem;
   right: 0;
-  background-color: #BBB;
   z-index: 10;
 }
 
 .navbar ul {
   list-style-type: none;
-  padding: 1rem;
+  padding: 0;
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.navbar li {
+  padding: 0 0.67rem;
+  border-right: 0.33rem solid rgba(255, 255, 255, 0);
+  text-align: right;
+  margin: 0 0 .67rem 0;
+}
+
+.navbar li a {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.17rem;
+}
+
+.navbar li.active {
+  border-right: 0.33rem solid white;
+}
+
+.navbar li.active a {
+  color: white;
+}
+
+@media screen and (max-width: 992px) {
+  .navbar ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .navbar ul li {
+    margin: 0 .67rem 0 0;
+    padding: 0 .33rem;
+  }
 }
 
 .search {
@@ -247,6 +292,11 @@ body.slide-bg {
   margin: 0 auto;
   overflow: hidden;
   width: auto;
+  position: relative;
+}
+
+.col {
+  padding: 3.33rem 0;
 }
 
 .container .wrapper.scene-before-search {
@@ -315,6 +365,14 @@ body.slide-bg {
           align-items: stretch;
   overflow-x: hidden;
   overflow-y: auto;
+  /* Hiding scrollbars */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.col-right::-webkit-scrollbar {
+  display: none;
 }
 
 #plot-questions svg {

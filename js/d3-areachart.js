@@ -21,7 +21,7 @@ export const plotAreaChart = () => {
         let lowerLimit = Math.floor(0.5 * upperLimit);
         let y;
 
-        for (let x = 0; x < 100; x++) { 
+        for (let x = 0; x < 5; x++) { 
             if (x < 60) continue;
 
             let a = 1;
