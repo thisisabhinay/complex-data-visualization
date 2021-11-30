@@ -3,6 +3,7 @@ import { randomIntFromInterval } from './main.js';
 export const plotAreaChart = () => {
     //D3
     console.log(`Plotting Area Chart: ${d3}`);
+    
     // set the dimensions and margins of the graph
     const margin = { top: 10, right: 30, bottom: 30, left: 50 },
         width = 280 - margin.left - margin.right,

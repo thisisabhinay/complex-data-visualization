@@ -46,17 +46,17 @@ scene.beforeSearch.querySelector("#search-btn")
         let sceneTransitioned = new Promise((resolve, reject) => {
             const animatedEl = scene.afterSearch.querySelectorAll(".animate__animated");
 
-            animatedEl[1].classList.add('animate__delay-2s');
-            animatedEl[2].classList.add('animate__delay-3s');
-            animatedEl[3].classList.add('animate__delay-4s');
-            animatedEl[4].classList.add('animate__delay-5s');
+            // animatedEl[1].classList.add('animate__delay-2s');
+            // animatedEl[2].classList.add('animate__delay-3s');
+            // animatedEl[3].classList.add('animate__delay-4s');
+            // animatedEl[4].classList.add('animate__delay-5s');
 
-            // Applying animations
-            animatedEl[0].classList.add('animate__slideInLeft');
-            animatedEl[1].classList.add('animate__fadeInUp');
-            animatedEl[2].classList.add('animate__fadeInUp');
-            animatedEl[3].classList.add('animate__fadeInUp');
-            animatedEl[4].classList.add('animate__fadeInRight');
+            // // Applying animations
+            // animatedEl[0].classList.add('animate__slideInLeft');
+            // animatedEl[1].classList.add('animate__fadeInUp');
+            // animatedEl[2].classList.add('animate__fadeInUp');
+            // animatedEl[3].classList.add('animate__fadeInUp');
+            // animatedEl[4].classList.add('animate__fadeInRight');
 
             return resolve("Promise Resolved: Page transitions added");
         });

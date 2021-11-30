@@ -205,6 +205,7 @@ body {
   color: #fff;
   border: none;
   outline: none;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -381,12 +382,16 @@ body.slide-bg {
 }
 
 #plot-questions circle {
-  fill: #000;
+  fill: #1ab2f8;
 }
 
 #plot-questions path {
   fill: none;
-  stroke: red;
+  stroke: #FFF;
+}
+
+#plot-questions text {
+  fill: rgba(255, 255, 255, 0.6);
 }
 
 #chart-search-volume path {
