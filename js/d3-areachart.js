@@ -34,13 +34,8 @@ export const plotAreaChart = () => {
     }
 
     let data = generateSeedData();
-
-    console.log(data);
-
     let containerWidth = document.getElementById("chart-search-volume").clientWidth;
     let containerHeight = document.getElementById("chart-search-volume").clientHeight;
-    console.log(containerWidth);
-    console.log(containerHeight);
 
     // Add X axis --> it is a date format
     const x = d3.scaleTime()

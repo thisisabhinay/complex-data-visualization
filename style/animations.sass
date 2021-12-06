@@ -1,0 +1,68 @@
+$animate-duration: 1s
+$animate-delay: 1s
+$animate-repeat: 1
+
+.animate__animated
+    animation-duration: 1s
+    animation-duration: var($animate-duration)
+    animation-fill-mode: both
+
+.animate__slideInRight
+    animation-name: slideInRight
+
+.animate__fadeInUp
+    animation-name: fadeInUp
+
+.animate__fadeInUpBig
+    animation-name: fadeInUpBig
+
+.animate__fadeInRight
+    animation-name: fadeInRight
+
+.animate__animated.animate__delay-2s
+    animation-delay: calc(var($animate-delay) * 1.2)
+
+.animate__animated.animate__delay-3s
+    animation-delay: calc(var($animate-delay) * 1.4)
+
+.animate__animated.animate__delay-4s
+    animation-delay: calc(var($animate-delay) * 1.6)
+
+.animate__animated.animate__delay-5s
+    animation-delay: calc(var($animate-delay) * 2)
+
+@-webkit-keyframes slideInRight
+  from 
+    transform: translate3d(10%, 0, 0)
+    visibility: visible
+
+  to 
+    transform: translate3d(0, 0, 0)
+
+
+@keyframes fadeInUpBig
+    from
+        opacity: 0
+        transform: translate3d(0, 40%, 0)
+
+    to
+        opacity: 1
+        transform: translate3d(0, 0, 0)
+
+@keyframes fadeInUp
+    from
+        opacity: 0
+        transform: translate3d(0, 15%, 0)
+
+    to
+        opacity: 1
+        transform: translate3d(0, 0, 0)
+
+@keyframes fadeInRight
+    from
+        opacity: 0
+        transform: translate3d(10%, 0, 0)
+
+    to
+        opacity: 1
+        transform: translate3d(0, 0, 0)

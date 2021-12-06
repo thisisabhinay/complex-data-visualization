@@ -1,6 +1,5 @@
 export const plotDendrogram = () => {
     //D3
-
     let containerWidth = document.getElementById("chart-column").clientWidth;
     let containerHeight = document.getElementById("chart-column").clientHeight;
 
