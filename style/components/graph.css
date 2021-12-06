@@ -2,7 +2,6 @@
   margin: 0 0 4rem 0;
   width: auto;
   height: 100%;
-  background: #DDD;
   opacity: 0;
   -webkit-transition: opacity 1000ms ease-in-out;
   transition: opacity 1000ms ease-in-out;

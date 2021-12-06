@@ -31,15 +31,26 @@
     <template id="scene-before-search">
       <div class="wrapper scene-before-search">
         <div class="search animate__animated animate__fadeInUp">
-          <input id="search-input" type="text" placeholder="Enter Keyword..." />
-          <button id="search-btn">Search</button>
+          <h1 class="heading">Discover what people are asking about…</h1>
+          <h2 class="sub-heading">
+            Get instant, raw search insights, direct from the minds of your
+            customers
+          </h2>
+          <div class="input-container">
+            <input id="search-input" type="text" placeholder="Enter Keyword..." />
+            <button id="search-btn">
+              <img src="img/search-icon.svg" alt="Search Icon" class="icon" />
+              Search
+            </button>
+          </div>
+          <p class="help-text">Enter a topic, brand or product・Use 1-2 words for best results</p>
         </div>
       </div>
     </template>
     <template id="scene-after-search">
       <nav class="navbar">
         <ul>
-          <li><a href="#plot-questions">Questions</a></li>
+          <li class="active"><a href="#plot-questions">Questions</a></li>
           <li><a href="#graph-prepositions">Prepositions</a></li>
           <li><a href="#graph-comparisons">Comparisons</a></li>
           <li><a href="#graph-related-keywords">Related Keywords</a></li>
@@ -70,30 +81,22 @@
             <div class="metric__label">Cost-Per-Click</div>
           </div>
         </div>
-        <div class="col col-right">
+        <div id="chart-column" class="col col-right">
           <section class="animate__animated graph">
-            <div id="plot-questions" class="plot dendrogram">
-            </div>
+            <div id="plot-questions" class="plot dendrogram"></div>
           </section>
 
           <section id="graph-prepositions" class="animate__animated graph">
-            <div class="plot dendrogram">
-              Dendrogram Prepositions
-            </div>
+            <div class="plot dendrogram">Dendrogram Prepositions</div>
           </section>
 
           <section id="graph-comparisons" class="animate__animated graph">
-            <div class="plot dendrogram">
-              Dendrogram Comparisons
-            </div>
+            <div class="plot dendrogram">Dendrogram Comparisons</div>
           </section>
 
           <section id="graph-related-keywords" class="animate__animated graph">
-            <div class="plot dendrogram">
-              Dendrogram Related Keywords
-            </div>
+            <div class="plot dendrogram">Dendrogram Related Keywords</div>
           </section>
-
         </div>
       </div>
     </template>
