@@ -42,6 +42,16 @@ body {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 38, 51, 0)), to(rgba(30, 38, 51, 0.24)));
+  background: linear-gradient(180deg, rgba(30, 38, 51, 0) 0%, rgba(30, 38, 51, 0.24) 100%);
+  -webkit-backdrop-filter: blur(2.67rem);
+          backdrop-filter: blur(2.67rem);
+  border-radius: .67rem;
+  margin: 0 0 3.33rem 0;
+}
+
+.metric .metric__graph {
+  margin: 0 0 1.33rem 0;
 }
 
 .metric .metric__graph img {
@@ -70,6 +80,26 @@ body {
 .metric.metric-cpc .metric__value {
   font-size: 3.33rem;
   line-height: 4rem;
+}
+
+.metric.metric-kd .metric__graph {
+  height: 1rem;
+  width: 100%;
+  position: relative;
+  background: -webkit-gradient(linear, right top, left top, from(rgba(30, 150, 0, 0.8)), color-stop(50.52%, rgba(255, 242, 0, 0.8)), to(rgba(255, 0, 0, 0.8)));
+  background: linear-gradient(270deg, rgba(30, 150, 0, 0.8) 0%, rgba(255, 242, 0, 0.8) 50.52%, rgba(255, 0, 0, 0.8) 100%);
+  -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+          transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.metric.metric-kd .metric__graph .metric__graph-mask {
+  height: 1rem;
+  background: -webkit-gradient(linear, right top, left top, color-stop(100%, #1E2633), color-stop(0%, rgba(30, 38, 51, 0)));
+  background: linear-gradient(270deg, #1E2633 100%, rgba(30, 38, 51, 0) 0%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .navbar {
@@ -264,6 +294,55 @@ body {
   margin-right: .67rem;
 }
 
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0);
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn .btn__icon {
+  width: 1.17rem;
+  height: 1.17rem;
+  margin-right: .67rem;
+}
+
+.btn img {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn .btn__label {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-transform: capitalize;
+}
+
+.btn:hover {
+  color: white;
+}
+
 .graph {
   margin: 0 0 4rem 0;
   width: auto;
@@ -344,8 +423,8 @@ body.slide-bg {
 .container .wrapper.scene-after-search {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 3fr;
-      grid-template-columns: 1fr 3fr;
+  -ms-grid-columns: 2fr 10fr;
+      grid-template-columns: 2fr 10fr;
   grid-column-gap: 1rem;
   grid-auto-rows: minmax(10vh, 100vh);
 }
@@ -424,9 +503,5 @@ body.slide-bg {
 
 #plot-questions text {
   fill: rgba(255, 255, 255, 0.6);
-}
-
-#chart-search-volume path {
-  fill: url(#grd1);
 }
 /*# sourceMappingURL=interface.css.map */

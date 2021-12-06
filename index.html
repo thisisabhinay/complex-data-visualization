@@ -51,33 +51,37 @@
       <nav class="navbar">
         <ul>
           <li class="active"><a href="#plot-questions">Questions</a></li>
-          <li><a href="#graph-prepositions">Prepositions</a></li>
+          <!-- <li><a href="#graph-prepositions">Prepositions</a></li> -->
           <li><a href="#graph-comparisons">Comparisons</a></li>
           <li><a href="#graph-related-keywords">Related Keywords</a></li>
         </ul>
       </nav>
       <div class="wrapper scene-after-search">
         <div class="col col-left">
-          <div class="animate__animated search-query">
-            <span id="query-value" class="search-query__value"></span>
-            &larr; Back
+          <div class="animate__animated search-query btn btn--back">
+            <div class="btn__icon">
+              <img src="img/arrow-left.svg" alt="Back Arrow" />
+            </div>
+            <div class="btn__label">Start Again</div>
           </div>
 
           <div class="animate__animated metric metric-search-volume">
-            <div id="chart-search-volume" class="metric__graph"></div>
-            <div class="metric__value">2,125,453,711</div>
+            <div id="chart-search-volume"  class="metric__graph"></div>
+            <div id="metric-search-volume-value" class="metric__value">2,125,453,711</div>
             <div class="metric__label">Search Volume</div>
           </div>
 
           <div class="animate__animated metric metric-kd">
-            <div id="chart-kd" class="metric__graph"></div>
-            <div class="metric__value">76</div>
+            <div id="chart-kd" class="metric__graph">
+              <div id="metric-kd-mask" class="metric__graph-mask"></div>
+            </div>
+            <div id="metric-kd-value" class="metric__value">76</div>
             <div class="metric__label">Keyword Difficulty</div>
           </div>
 
           <div class="animate__animated metric metric-cpc">
             <div class="metric__graph"></div>
-            <div class="metric__value">8.9</div>
+            <div id="metric-cpc-value" class="metric__value">8.9</div>
             <div class="metric__label">Cost-Per-Click</div>
           </div>
         </div>
