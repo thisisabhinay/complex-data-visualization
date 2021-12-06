@@ -49,8 +49,8 @@
     </template>
     <template id="scene-after-search">
       <nav class="navbar">
-        <ul>
-          <li class="active"><a href="#plot-questions">Questions</a></li>
+        <ul id="navbar">
+          <li class="active"><a href="#graph-related-questions">Questions</a></li>
           <!-- <li><a href="#graph-prepositions">Prepositions</a></li> -->
           <li><a href="#graph-comparisons">Comparisons</a></li>
           <li><a href="#graph-related-keywords">Related Keywords</a></li>
@@ -86,12 +86,8 @@
           </div>
         </div>
         <div id="chart-column" class="col col-right">
-          <section class="animate__animated graph">
+          <section id="graph-related-questions" class="animate__animated graph">
             <div id="plot-questions" class="plot dendrogram"></div>
-          </section>
-
-          <section id="graph-prepositions" class="animate__animated graph">
-            <div class="plot dendrogram">Dendrogram Prepositions</div>
           </section>
 
           <section id="graph-comparisons" class="animate__animated graph">
