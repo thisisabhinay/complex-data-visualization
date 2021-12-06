@@ -10,6 +10,16 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 38, 51, 0)), to(rgba(30, 38, 51, 0.24)));
+  background: linear-gradient(180deg, rgba(30, 38, 51, 0) 0%, rgba(30, 38, 51, 0.24) 100%);
+  -webkit-backdrop-filter: blur(2.67rem);
+          backdrop-filter: blur(2.67rem);
+  border-radius: .67rem;
+  margin: 0 0 3.33rem 0;
+}
+
+.metric .metric__graph {
+  margin: 0 0 1.33rem 0;
 }
 
 .metric .metric__graph img {
@@ -38,5 +48,25 @@
 .metric.metric-cpc .metric__value {
   font-size: 3.33rem;
   line-height: 4rem;
+}
+
+.metric.metric-kd .metric__graph {
+  height: 1rem;
+  width: 100%;
+  position: relative;
+  background: -webkit-gradient(linear, right top, left top, from(rgba(30, 150, 0, 0.8)), color-stop(50.52%, rgba(255, 242, 0, 0.8)), to(rgba(255, 0, 0, 0.8)));
+  background: linear-gradient(270deg, rgba(30, 150, 0, 0.8) 0%, rgba(255, 242, 0, 0.8) 50.52%, rgba(255, 0, 0, 0.8) 100%);
+  -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+          transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.metric.metric-kd .metric__graph .metric__graph-mask {
+  height: 1rem;
+  background: -webkit-gradient(linear, right top, left top, color-stop(100%, #1E2633), color-stop(0%, rgba(30, 38, 51, 0)));
+  background: linear-gradient(270deg, #1E2633 100%, rgba(30, 38, 51, 0) 0%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 /*# sourceMappingURL=metric.css.map */

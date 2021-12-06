@@ -1,0 +1,33 @@
+.btn
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 0px
+    cursor: pointer
+    border: 1px solid rgba(255, 255, 255, 0)
+    transition: all 200ms ease-in-out
+    color: rgba(255,255,255,0.8)
+
+    .btn__icon
+        width: 1.17rem
+        height: 1.17rem
+        margin-right: .67rem
+
+    img
+        width: 100%
+        height: auto
+        display: flex
+
+    .btn__label
+        display: inline-flex
+        font-family: Inter
+        font-style: normal
+        font-weight: normal
+        font-size: 1rem
+        line-height: 1rem
+        text-transform: capitalize
+
+    &:hover
+        color: rgba(255,255,255,1)
+
+    // &. btn--back

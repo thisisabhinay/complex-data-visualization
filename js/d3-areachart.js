@@ -1,51 +1,51 @@
-import { randomIntFromInterval } from './main.js';
+import { randomIntFromInterval, metrics } from './main.js';
 
 export const plotAreaChart = () => {
     //D3
-    console.log(`Plotting Area Chart: ${d3}`);
 
-    // set the dimensions and margins of the graph
-    const margin = { top: 10, right: 30, bottom: 30, left: 50 },
-        width = 280 - margin.left - margin.right,
-        height = 100 - margin.top - margin.bottom;
+    console.log(metrics);
 
     // append the svg object to the body of the page
     const svg = d3.select("#chart-search-volume")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .append("g");
 
     let generateSeedData = () => {
-        let searchVolume = 2125453711;
         let dataArr = [];
         let base = 0.2;
         let upperLimit = 0;
 
         const steps = 5;
-        
-        for(let i = 1; i < steps; i++){
-            upperLimit = upperLimit < searchVolume ? base * 2 * i : searchVolume;
+
+        for (let i = 1; i < steps; i++) {
+            upperLimit = upperLimit < metrics.search_volume ? base * 2 * i : metrics.search_volume;
 
             dataArr.push({
                 date: i,
-                value: randomIntFromInterval((base * searchVolume), (upperLimit * searchVolume))
+                value: randomIntFromInterval((base * metrics.search_volume), (upperLimit * metrics.search_volume))
             });
 
             base = upperLimit;
         }
 
-        return  dataArr;
+        return dataArr;
     }
 
-   let data = generateSeedData();
+    let data = generateSeedData();
 
     console.log(data);
+
+    let containerWidth = document.getElementById("chart-search-volume").clientWidth;
+    let containerHeight = document.getElementById("chart-search-volume").clientHeight;
+    console.log(containerWidth);
+    console.log(containerHeight);
 
     // Add X axis --> it is a date format
     const x = d3.scaleTime()
         .domain(d3.extent(data, d => d.date))
-        .range([0, width]);
+        .range([0, containerWidth]);
     // svg.append("g")
     //     .attr("transform", `translate(0,${height})`)
     //     .call(d3.axisBottom(x));
@@ -53,7 +53,7 @@ export const plotAreaChart = () => {
     // Add Y axis
     const y = d3.scaleLinear()
         .domain([0, d3.max(data, d => +d.value)])
-        .range([height, 0]);
+        .range([containerHeight, 0]);
     // svg.append("g")
     //     .call(d3.axisLeft(y));
 

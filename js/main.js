@@ -8,6 +8,12 @@ let scene = {
     afterSearch: null
 }
 
+export const metrics = {
+    search_volume: 2182103917,
+    keyword_difficulty: 72,
+    cost_per_click: 9.1
+};
+
 let input;
 
 let appendTemplate = (source, target, isOverwrite) => {
@@ -25,7 +31,13 @@ let appendTemplate = (source, target, isOverwrite) => {
 
 export const randomIntFromInterval = (min, max) => { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
+
+const loadMetricValues = () => {
+    document.getElementById("metric-search-volume-value").innerHTML = metrics.search_volume.toLocaleString();
+    document.getElementById("metric-kd-value").innerHTML = metrics.keyword_difficulty;
+    document.getElementById("metric-cpc-value").innerHTML = metrics.cost_per_click;
+};
 
 scene.beforeSearch = appendTemplate("scene-before-search", "app", true);
 
@@ -65,15 +77,19 @@ scene.beforeSearch.querySelector("#search-btn")
 
         sceneLoaded.then(response => {
             console.log(response);
-            scene.afterSearch.querySelector("#query-value").innerHTML = input.value;
+            // scene.afterSearch.querySelector("#query-value").innerHTML = input.value;
             applyScrollSnap();
         });
 
         sceneTransitioned.then(response => {
             console.log(response);
+            loadMetricValues();
+
             plotAreaChart();
-            plotLinearScale();
             plotDendrogram();
+
+            let chartKdWidth = document.getElementById("chart-kd").clientWidth;
+            document.getElementById("metric-kd-mask").style.width = `${chartKdWidth - (metrics.keyword_difficulty/100)*chartKdWidth}px`;
         });
     });
 
