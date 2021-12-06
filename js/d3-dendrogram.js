@@ -1,83 +1,101 @@
 export const plotDendrogram = () => {
     //D3
+
+    let containerWidth = document.getElementById("chart-column").clientWidth;
+    let containerHeight = document.getElementById("chart-column").clientHeight;
+
     let svg = d3.select("#plot-questions")
         .append("svg")
-        .attr("width", 800)
-        .attr("heigth", 800)
+        .attr("width", containerWidth)
+        .attr("heigth", containerHeight)
         .append("g")
-        .attr("transform", "translate(50, 50)");
+        .attr("transform", `translate(${containerWidth / 2}, ${containerHeight / 2.5})`);
 
-    let data = [
-        { "child": "John", "parent": "" },
-        { "child": "Aaron", "parent": "John" },
-        { "child": "Kevin", "parent": "Kevin" },
-        { "child": "Hannah", "parent": "Ann" },
-        { "child": "Rose", "parent": "Sarah" },
-        { "child": "Ann", "parent": "John" },
-        { "child": "Sarah", "parent": "Kevin" },
-        { "child": "Mark", "parent": "Ann" },
-        { "child": "Angel", "parent": "Sarah" }
-    ];
+    let radius = containerWidth / 2;
 
-    // let dataStructure = d3.stratify()
-    //     .id(d => d.child)
-    //     .parentId(d => d.parent)
-    //     (data);
+    console.log(radius);
 
-    let chaos = d3.stratify()([
-        { id: "Chaos" },
-        { id: "Gaia", parentId: "Chaos" },
-        { id: "Eros", parentId: "Chaos" },
-        { id: "Erebus", parentId: "Chaos" },
-        { id: "Tartarus", parentId: "Chaos" },
-        { id: "Mountains", parentId: "Gaia" },
-        { id: "Pontus", parentId: "Gaia" },
-        { id: "Uranus", parentId: "Gaia" }
-    ]);
-
-    let parsed = d3.hierarchy(
-        "This is not proper parsing. But certainly fun!",
-        id => {
-            for (const split of [/[^\w\s]/, /\s/]) {
-                const children = id && id.split(split).filter(id => id.length > 0);
-                if (children.length > 1) return children;
-            }
-        }
-    );
-
-    let dataStructure = d3.hierarchy(data, function (d) { return d.children });
-
-    console.log(dataStructure)
-
-    let treeStructure = d3.tree().size([600, 600]);
-    let information = treeStructure(parsed);
-
-    console.log(information);
-
-    let circles = svg.append("g").selectAll("circle")
-        .data(information.descendants());
-    circles.enter().append("circle")
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y)
-        .attr("r", 5);
-
-    let connections = svg.append("g").selectAll("path")
-        .data(information.links());
-
-    connections.enter()
-        .append("path")
-        .attr("d", d => {
-            return "M" + d.source.x + "," + d.source.y + " C " +
-                d.source.x + "," + (d.source.y + d.target.y) / 2 + " " +
-                d.target.x + "," + (d.source.y + d.target.y) / 2 + " " +
-                d.source.x + "," + d.target.y;
+    d3.json("questions_index.json").then(data => {
+        console.log(data);
+        let family = d3.hierarchy({
+            name: "root",
+            children: data.map(item => {
+                /* Data Preparation Stage */
+                return {
+                    name: item.question_text,
+                    children: item.related_questions.map(rq => {
+                        return { name: rq.question };
+                    })
+                };
+            })
         });
 
-    let names = svg.append("g").selectAll("text")
-        .data(information.descendants());
+        console.log(family);
 
-    names.enter().append("text")
-        .text(d => d.data)
-        .attr("x", d => d.x + 5)
-        .attr("y", d => d.y + 2);
+        let tree = d3.cluster().size([2 * Math.PI, radius - 100]);
+
+        const root = tree(family)
+            .sort((a, b) => {
+                d3.ascending(a.data.name, b.data.name);
+            });
+
+        console.log(family);
+        console.log(root.descendants());
+        console.log(root.links());
+        // console.log(root.labels());
+
+        let information = root;
+
+        let connections = svg.append("g").selectAll("path")
+            .data(information.links());
+
+        connections.enter()
+            .append("path")
+            .attr("d", d3.linkRadial()
+                .angle(d => d.x)
+                .radius(d => d.y));
+        //     return d3.linkVertical()({
+        //         source: [d.source.x * 100, d.source.y],
+        //         target: [d.target.x * 100, d.target.y],
+        //     });
+        // });
+
+        let names = svg.append("g").selectAll("text")
+            .data(information.descendants());
+
+        // names.enter().append("text")
+        //     .text(d => d.target.data.name)
+        //     .attr("x", d => (d.source.y + d.target.y) / 2)
+        //     .attr("y", d => (d.source.x + d.target.x) / 2);
+
+        // names.append("text")
+        //     .attr("y", 3)
+        //     .attr("x", function (d) { return d.children ? -8 : 8; })
+        //     .style("text-anchor", function (d) { return d.children ? "end" : "start"; })
+        //     .text(function (d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
+
+        let linkg = svg.selectAll("g.link")
+            .data(information.links())
+            .enter().append("g")
+            .attr("class", "link");
+
+        linkg.append("path")
+            .attr("class", "link")
+            .attr("d", "diagonal");
+
+        linkg.append("text")
+            .attr("x", d => (d.source.y + d.target.y) / 2)
+            .attr("y", d => (d.source.x + d.target.x) / 2)
+            .attr("text-anchor", "middle")
+            .text(function (d) {
+                return d.target.data.name;
+            });
+
+        let circles = svg.append("g").selectAll("circle")
+            .data(information.links());
+        circles.enter().append("circle")
+            .attr("cx", d => (d.source.y + d.target.y) / 2)
+            .attr("cy", d => (d.source.x + d.target.x) / 2)
+            .attr("r", 2);
+    });
 };

@@ -24,7 +24,7 @@ let appendTemplate = (source, target, isOverwrite) => {
 }
 
 export const randomIntFromInterval = (min, max) => { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 scene.beforeSearch = appendTemplate("scene-before-search", "app", true);
@@ -46,17 +46,19 @@ scene.beforeSearch.querySelector("#search-btn")
         let sceneTransitioned = new Promise((resolve, reject) => {
             const animatedEl = scene.afterSearch.querySelectorAll(".animate__animated");
 
-            animatedEl[1].classList.add('animate__delay-2s');
-            animatedEl[2].classList.add('animate__delay-3s');
-            animatedEl[3].classList.add('animate__delay-4s');
-            animatedEl[4].classList.add('animate__delay-5s');
+            // animatedEl[1].classList.add('animate__delay-2s');
+            // animatedEl[2].classList.add('animate__delay-3s');
+            // animatedEl[3].classList.add('animate__delay-4s');
+            // animatedEl[4].classList.add('animate__delay-5s');
 
-            // Applying animations
-            animatedEl[0].classList.add('animate__slideInLeft');
-            animatedEl[1].classList.add('animate__fadeInUp');
-            animatedEl[2].classList.add('animate__fadeInUp');
-            animatedEl[3].classList.add('animate__fadeInUp');
-            animatedEl[4].classList.add('animate__fadeInRight');
+            // // Applying animations
+            // animatedEl[0].classList.add('animate__slideInLeft');
+            // animatedEl[1].classList.add('animate__fadeInUp');
+            // animatedEl[2].classList.add('animate__fadeInUp');
+            // animatedEl[3].classList.add('animate__fadeInUp');
+            // animatedEl[4].classList.add('animate__fadeInRight');
+
+            // animateBg();
 
             return resolve("Promise Resolved: Page transitions added");
         });
@@ -74,3 +76,13 @@ scene.beforeSearch.querySelector("#search-btn")
             plotDendrogram();
         });
     });
+
+
+// const animateBg = () => {
+//     // document.body.style.backgroundPosition
+//     // setInterval(()=> 
+//     //     document.body.style.backgroundPosition = `1${randomIntFromInterval(15,40)}% 10${1,9}%`, 500);   
+
+//     positionX += 0.5 * Math.sin(angle);
+//     positionY += 0.5 * Math.cos(angle);
+// }

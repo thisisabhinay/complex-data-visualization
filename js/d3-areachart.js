@@ -3,6 +3,7 @@ import { randomIntFromInterval } from './main.js';
 export const plotAreaChart = () => {
     //D3
     console.log(`Plotting Area Chart: ${d3}`);
+
     // set the dimensions and margins of the graph
     const margin = { top: 10, right: 30, bottom: 30, left: 50 },
         width = 280 - margin.left - margin.right,
@@ -16,27 +17,30 @@ export const plotAreaChart = () => {
         .append("g")
 
     let generateSeedData = () => {
-        let upperLimit = 2125453711;
-        let domain = [];
-        let lowerLimit = Math.floor(0.5 * upperLimit);
-        let y;
+        let searchVolume = 2125453711;
+        let dataArr = [];
+        let base = 0.2;
+        let upperLimit = 0;
 
-        for (let x = 0; x < 5; x++) { 
-            if (x < 60) continue;
+        const steps = 5;
+        
+        for(let i = 1; i < steps; i++){
+            upperLimit = upperLimit < searchVolume ? base * 2 * i : searchVolume;
 
-            let a = 1;
-            let b = 100;
-            let c = 10;
-            let d = 100;
-            lowerLimit = a * x * x + randomIntFromInterval(-b * x / c, b * x / d);
+            dataArr.push({
+                date: i,
+                value: randomIntFromInterval((base * searchVolume), (upperLimit * searchVolume))
+            });
 
-            domain.push({date: x, value: lowerLimit});
+            base = upperLimit;
         }
 
-        return domain;
+        return  dataArr;
     }
 
-    let data = generateSeedData();
+   let data = generateSeedData();
+
+    console.log(data);
 
     // Add X axis --> it is a date format
     const x = d3.scaleTime()
@@ -53,6 +57,7 @@ export const plotAreaChart = () => {
     // svg.append("g")
     //     .call(d3.axisLeft(y));
 
+    // Creating components
     const defs = svg.append("defs")
         .append("linearGradient")
         .attr("id", "grd1")
@@ -74,9 +79,23 @@ export const plotAreaChart = () => {
         .datum(data)
         .attr("fill", "url(#grd1)")
         .attr("d", d3.area()
+            .curve(d3.curveBasis)
             .x(d => x(d.date))
             .y0(y(0))
             .y1(d => y(d.value))
         )
-        
+
+    // Stroke
+    svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 2)
+        .attr("d", d3.line()
+            .curve(d3.curveBasis)
+            .x(function (d) { return x(d.date) })
+            .y(function (d) { return y(d.value) })
+        );
+
+
 };
