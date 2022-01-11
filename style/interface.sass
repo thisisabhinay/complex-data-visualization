@@ -67,6 +67,9 @@ body
 #scene-after-search.load
     display: block
 
+.wrapper
+    position: relative
+
 .row
     width: 100%
     display: flex
@@ -75,11 +78,18 @@ body
     align-items: stretch
 
 .col-left
+    z-index: 10
 
 .col-right
     align-items: stretch
     overflow-x: hidden
     overflow-y: auto
+    overflow: hidden
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    z-index: 1
 
     /* Hiding scrollbars */
 
@@ -90,7 +100,7 @@ body
     &::-webkit-scrollbar
         display: none // Safari and Chrome
 
-.plot 
+.plot
     height: 100vh
 
 // Dendrogram
@@ -139,6 +149,6 @@ body
 
 // text 
 
-// svg * 
+// svg text 
 //   transform-box: fill-box
-//   transform-origin: left center // Chrome, Firefox behaves differently
+//   transform-origin: center center // Chrome, Firefox behaves differently
