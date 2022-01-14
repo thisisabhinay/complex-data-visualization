@@ -628,11 +628,6 @@ body.slide-bg {
   overflow-x: hidden;
   overflow-y: auto;
   overflow: hidden;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 1;
   /* Hiding scrollbars */
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -662,6 +657,6 @@ body.slide-bg {
 }
 
 #plot-questions text {
-  fill: rgba(255, 255, 255, 0.6);
+  fill: rgba(255, 255, 255, 0.8);
 }
 /*# sourceMappingURL=interface.css.map */

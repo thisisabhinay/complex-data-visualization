@@ -1,11 +1,14 @@
 import { applyScrollSnap } from './intersection.js';
-import { plotDendrogram } from './d3-dendrogram.js';
+// import { plotDendrogram } from './d3-dendrogram.js';
+// import { plotDendrogram } from './d3-dendrogram-2.js';
+// import { plotDendrogram } from './d3-dendrogram-3.js';
+import { plotDendrogram } from './d3-dendrogram-4.js';
 import { plotAreaChart } from './d3-areachart.js';
 
 let scene = {
     beforeSearch: null,
     afterSearch: null
-}
+};
 
 export const metrics = {
     search_volume: 2182103917,
@@ -26,7 +29,7 @@ let appendTemplate = (source, target, isOverwrite) => {
     targetEl.appendChild(clone);
 
     return targetEl;
-}
+};
 
 export const randomIntFromInterval = (min, max) => { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
