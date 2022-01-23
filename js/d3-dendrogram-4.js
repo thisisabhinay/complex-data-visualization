@@ -28,246 +28,249 @@ export const plotDendrogram = () => {
         let svg = d3
             .select("#plot-questions")
             .append("svg")
+            // .attr("preserveAspectRatio", "xMinYMin meet")
+            // .attr("viewBox", "0 0 800 800")
+            // .classed("svg-content", true)
             .attr("width", width + margin.right + margin.left)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             // .attr("transform", `translate(${margin.left}, ${margin.top})`)
             .attr("transform", `translate(${(width + margin.left + margin.right) / 2}, ${(height + margin.top + margin.bottom) / 2}) rotate(0, 0,0)`);
 
-        console.log(svg);
+    console.log(svg);
 
-        let i = 0;
-        let duration = 750;
-        let root;
-        let radius = (document.getElementById("chart-column").clientWidth - margin.left - margin.right) / 2;
+    let i = 0;
+    let duration = 750;
+    let root;
+    let radius = (document.getElementById("chart-column").clientWidth - margin.left - margin.right) / 2;
 
-        // 2. Preparing data
-        let cluster = d3.cluster().size([2 * Math.PI, radius - 300]);
-        root = d3.hierarchy({
-            name: "Questions",
-            children: data.map(item => {
-                /* Data Preparation Stage */
-                graphLinksCount.level01Count += 1;
-                return {
-                    name: item.question_text,
-                    children: item.related_questions.map(rq => {
-                        graphLinksCount.level12Count += 1;
-                        return { name: rq.question };
-                    })
-                };
-            })
-        });
+    // 2. Preparing data
+    let cluster = d3.cluster().size([2 * Math.PI, radius - 300]);
+    root = d3.hierarchy({
+        name: "Questions",
+        children: data.map(item => {
+            /* Data Preparation Stage */
+            graphLinksCount.level01Count += 1;
+            return {
+                name: item.question_text,
+                children: item.related_questions.map(rq => {
+                    graphLinksCount.level12Count += 1;
+                    return { name: rq.question };
+                })
+            };
+        })
+    });
 
-        let diagonal = (s, d) => {
-            return `
+    let diagonal = (s, d) => {
+        return `
                 M ${s.y} ${s.x}
                 C ${(s.y + d.y / 2)} ${s.x}
                 C ${(s.y + d.y / 2)} ${d.x}
                 ${d.y} ${d.x}
             `;
-        };
+    };
 
-        // 3. Defining update function
-        let update = (source) => {
-            let treeData = cluster(root);
-                // .sort((a, b) => d3.ascending(a.data.name, b.data.name));
+    // 3. Defining update function
+    let update = (source) => {
+        let treeData = cluster(root);
+        // .sort((a, b) => d3.ascending(a.data.name, b.data.name));
 
-            // nodes
-            let nodes = treeData.descendants();
-            nodes.forEach(d => {
-                // Children have depth. We are using that depth to set the y-value on the nodes
-                d.y = d.depth * 180;
+        // nodes
+        let nodes = treeData.descendants();
+        nodes.forEach(d => {
+            // Children have depth. We are using that depth to set the y-value on the nodes
+            d.y = d.depth * 180;
+        });
+
+        console.log(svg);
+        let node = svg
+            .selectAll("g.node")
+            .data(nodes, d => {
+                // returning d.id or if it has a child
+                return d.id || (d.id = ++i);
             });
 
-            console.log(svg);
-            let node = svg
-                .selectAll("g.node")
-                .data(nodes, d => {
-                    // returning d.id or if it has a child
-                    return d.id || (d.id = ++i);
-                });
+        let nodeEnter = node
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            // .attr("transform", d => `translate(${source.y0}, ${source.x0})`)
+            .on("click", click);
 
-            let nodeEnter = node
-                .enter()
-                .append("g")
-                .attr("class", "node")
-                // .attr("transform", d => `translate(${source.y0}, ${source.x0})`)
-                .on("click", click);
+        nodeEnter
+            .append("circle")
+            .attr("class", "node")
+            .attr("r", 0)
+            .attr('cx', 0)
+            .attr('cy', d => -d.y)
+            .attr("transform", d => `rotate(${d.x * (180 / Math.PI)}, 0, 0)`)
+            .style("fill", d => d._children ? "red" : "#1AB2F8"); //If node has children turn it red else black
 
-            nodeEnter
-                .append("circle")
-                .attr("class", "node")
-                .attr("r", 0)
-                .attr('cx', 0)
-                .attr('cy', d => -d.y)
-                .attr("transform", d => `rotate(${d.x * (180 / Math.PI)}, 0, 0)`)
-                .style("fill", d => d._children ? "red" : "#1AB2F8"); //If node has children turn it red else black
-
-            nodeEnter
-                .append("text")
-                .classed("label", true)
-                .attr("transform", d => `
+        nodeEnter
+            .append("text")
+            .classed("label", true)
+            .attr("transform", d => `
                     rotate(${d.x * (180 / Math.PI)}, 0, 0)
                     translate(${d.y},0)                 
                 `)
-                .attr("dy", "0.5em") //What size text is going to be
-                // .attr("x", "1em")
-                .attr("x", d => {
-                    console.log(d);
-                    // Text position will be on left if it has children
-                    // And at right if it don't
-                    return d.children || d._children ? -50 : 10;
-                })
-                .attr("text-anchor", "start")
-                // .attr("text-anchor", d => {
-                //     return d.children || d._children ? "start" : "end";
-                // })
-                .text(d => d.data.name)
-                .attr("fill", "#FFF")
-                // .clone(true).lower()
-                // .attr("stroke-linejoin", "round")
-                // .attr("stroke-width", 2)
-                // .attr("stroke", "black");
+            .attr("dy", "0.5em") //What size text is going to be
+            // .attr("x", "1em")
+            .attr("x", d => {
+                console.log(d);
+                // Text position will be on left if it has children
+                // And at right if it don't
+                return d.children || d._children ? -50 : 10;
+            })
+            .attr("text-anchor", "start")
+            // .attr("text-anchor", d => {
+            //     return d.children || d._children ? "start" : "end";
+            // })
+            .text(d => d.data.name)
+            .attr("fill", "#FFF")
+        // .clone(true).lower()
+        // .attr("stroke-linejoin", "round")
+        // .attr("stroke-width", 2)
+        // .attr("stroke", "black");
 
-            let nodeUpdate = nodeEnter.merge(node);
+        let nodeUpdate = nodeEnter.merge(node);
 
-            nodeUpdate
-                .transition()
-                .duration(duration)
-                .attr("transform", d => {
-                    // We started at source x0 y0 and now transitioning to d.x d.y
-                    // return `translate(${d.y}, ${d.x})`;
-                });
+        nodeUpdate
+            .transition()
+            .duration(duration)
+            .attr("transform", d => {
+                // We started at source x0 y0 and now transitioning to d.x d.y
+                // return `translate(${d.y}, ${d.x})`;
+            });
 
-            // TODO: Need to transition circles in update
-            nodeUpdate
-                .select("circle.node")
-                .attr("r", 4)
-                .attr("transform", d => `rotate(${d.x * (180 / Math.PI)}, 0, 0)`)
-                .style("fill", d => d._children ? "red" : "#1ab2f8")
-                .attr("cursor", "pointer");
+        // TODO: Need to transition circles in update
+        nodeUpdate
+            .select("circle.node")
+            .attr("r", 4)
+            .attr("transform", d => `rotate(${d.x * (180 / Math.PI)}, 0, 0)`)
+            .style("fill", d => d._children ? "red" : "#1ab2f8")
+            .attr("cursor", "pointer");
 
-            nodeUpdate
-                .select("text.label")
-                .attr("transform", d => `
+        nodeUpdate
+            .select("text.label")
+            .attr("transform", d => `
                     rotate(${d.x * 180 / Math.PI - 90}) 
                     translate(${d.y},0)                 
                 `)
-                // .attr("dy", "0.35em") //What size text is going to be
-                .attr("x", d => {
-                    console.log(d);
-                    // Text position will be on left if it has children
-                    // And at right if it don't
-                    return d.children || d._children ? -50 : 10;
-                });
-
-            let nodeExit = node
-                .exit()
-                .transition()
-                .duration(duration)
-                .attr("transition", d => {
-                    // We are going from child to parent now
-                    return `translate(${source.y}, ${source.x})`;
-                })
-                .remove();
-
-            nodeExit
-                .select("circle")
-                .attr("r", 0);
-
-            nodeExit
-                .select("text")
-                .style("fill-opacity", 0);
-
-            // Creating Links
-            let linkGen = d3.linkRadial()
-                .angle(d => d.x)
-                .radius(d => d.y);
-
-            let links = treeData.descendants().slice(1);
-
-            // let node = svg
-            //     .selectAll("g.node")
-            //     .data(nodes, d => {
-            //         // returning d.id or if it has a child
-            //         return d.id || (d.id = ++i);
-            //     });
-
-            // let nodeEnter = node
-            //     .enter()
-            //     .append("g")
-            //     .attr("class", "node")
-            //     .attr("transform", d => `translate(${source.y0}, ${source.x0})`)
-            //     .on("click", click);
-
-            let link = svg
-                .selectAll("path.link")
-                .data(treeData.links());
-
-            let linkEnter = link
-                .enter()
-                .append("path")
-                .attr("class", "link")
-                .attr('stroke', "darkgray")
-                .attr('stroke-width', 2)
-                .attr("d", linkGen)
-                .attr("transform", d => `translate(${d.y}, ${d.x})`);
-
-            let linkUpdate = linkEnter.merge(link);
-
-            linkUpdate
-                .transition()
-                .duration(duration)
-                .attr("d", linkGen);
-
-            let linkExit = link
-                .exit()
-                .transition()
-                .duration(duration)
-                .attr("d", linkGen)
-                .remove();
-
-            // Storing old positions in order to transition back in case we collapse our graph or node
-            nodes.forEach(d => {
-                d.x0 = d.x;
-                d.y0 = d.y;
+            // .attr("dy", "0.35em") //What size text is going to be
+            .attr("x", d => {
+                console.log(d);
+                // Text position will be on left if it has children
+                // And at right if it don't
+                return d.children || d._children ? -50 : 10;
             });
 
-        }; // End Update(source)
+        let nodeExit = node
+            .exit()
+            .transition()
+            .duration(duration)
+            .attr("transition", d => {
+                // We are going from child to parent now
+                return `translate(${source.y}, ${source.x})`;
+            })
+            .remove();
 
-        let click = (event, d) => {
-            console.log(d);
-            if (d.children) {
-                d._children = d.children;
-                d.children = null;
-            }
+        nodeExit
+            .select("circle")
+            .attr("r", 0);
 
-            else {
-                d.children = d._children;
-                d._children = null;
-            }
+        nodeExit
+            .select("text")
+            .style("fill-opacity", 0);
 
-            update(d);
-        }; // End click(event, d)
+        // Creating Links
+        let linkGen = d3.linkRadial()
+            .angle(d => d.x)
+            .radius(d => d.y);
 
-        // 4. Setting root position
-        root.x0 = height / 2;
-        root.y0 = 0;
+        let links = treeData.descendants().slice(1);
 
-        console.log(root);
+        // let node = svg
+        //     .selectAll("g.node")
+        //     .data(nodes, d => {
+        //         // returning d.id or if it has a child
+        //         return d.id || (d.id = ++i);
+        //     });
 
-        let collapse = (d) => {
-            if (d.children) {
-                d._children = d.children;
-                d._children.forEach(collapse);
-                d.children = null;
-            }
-        };
+        // let nodeEnter = node
+        //     .enter()
+        //     .append("g")
+        //     .attr("class", "node")
+        //     .attr("transform", d => `translate(${source.y0}, ${source.x0})`)
+        //     .on("click", click);
 
-        // Collapse after the second level
-        root.children.forEach(collapse);
+        let link = svg
+            .selectAll("path.link")
+            .data(treeData.links());
 
-        update(root);
+        let linkEnter = link
+            .enter()
+            .append("path")
+            .attr("class", "link")
+            .attr('stroke', "darkgray")
+            .attr('stroke-width', 2)
+            .attr("d", linkGen)
+            .attr("transform", d => `translate(${d.y}, ${d.x})`);
 
-    });
+        let linkUpdate = linkEnter.merge(link);
+
+        linkUpdate
+            .transition()
+            .duration(duration)
+            .attr("d", linkGen);
+
+        let linkExit = link
+            .exit()
+            .transition()
+            .duration(duration)
+            .attr("d", linkGen)
+            .remove();
+
+        // Storing old positions in order to transition back in case we collapse our graph or node
+        nodes.forEach(d => {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+
+    }; // End Update(source)
+
+    let click = (event, d) => {
+        console.log(d);
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        }
+
+        else {
+            d.children = d._children;
+            d._children = null;
+        }
+
+        update(d);
+    }; // End click(event, d)
+
+    // 4. Setting root position
+    root.x0 = height / 2;
+    root.y0 = 0;
+
+    console.log(root);
+
+    let collapse = (d) => {
+        if (d.children) {
+            d._children = d.children;
+            d._children.forEach(collapse);
+            d.children = null;
+        }
+    };
+
+    // Collapse after the second level
+    root.children.forEach(collapse);
+
+    update(root);
+
+});
 };
