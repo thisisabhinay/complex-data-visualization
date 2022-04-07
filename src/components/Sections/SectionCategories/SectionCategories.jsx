@@ -27,7 +27,7 @@ const SectionCategories = () => {
             <div className="section section-categories">
                 <div className="container">
                     <div className="wrapper">
-                        <div className="page-title">
+                        <div className="page-title h1">
                             <p>Seven <em>layers</em> of <br /> <em>categories</em> hierarchy</p>
                         </div>
                         <div className="categories">

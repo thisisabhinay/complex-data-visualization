@@ -14,8 +14,8 @@ const Category = ({ categoryNum, categoryName, onClick }) => {
     return (
         <>
             <div className="category" onClick={onClick}>
-                <span className="category__num">{categoryNum}</span> 
-                <span className="category__name">{categoryName}</span>
+                <span className="category__num h2 weight-bold">{categoryNum}</span> 
+                <span className="category__name h3 weight-bold">{categoryName}</span>
             </div>
         </>
     );
