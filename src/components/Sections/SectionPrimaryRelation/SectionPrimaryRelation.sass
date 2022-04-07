@@ -8,19 +8,22 @@
 
     .container
         align-items: center
-        justify-content: center
+        justify-content: space-between
+        padding: 4.5rem 0
+
+    .breadcrumb
+        display: flex 
+        align-items: center
+        justify-content: start
+        align-self: stretch
+        
+        .breadcrumb__item
+            opacity: 0.8
+            margin-right: 1rem
+
+            &:last-child
+              opacity: 1
+              font-weight: bold  
 
     .wrapper
         text-align: center
-    
-    .section-secondary-relation
-        position: absolute
-        top: 0
-        bottom: 0
-        right: 0
-        width: 85vw
-        z-index: 1
-        background: $white
-        box-shadow: -1rem 0rem 1.5rem -0.5rem #000
-        border-radius: .25rem 0rem 0rem .25rem
-        animation: slideIn 200ms ease-out 

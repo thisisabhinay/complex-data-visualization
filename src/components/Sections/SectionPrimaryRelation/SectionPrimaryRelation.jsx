@@ -29,12 +29,26 @@ const SectionPrimaryRelation = ({ dataset }) => {
     return (
         <>
             <div className="section section-primary-relation">
-                <div className="container"  onClick={ () => onClickDatapoint() }>
-                    <div className="wrapper" ref={RefSectionWrapper}>
-                        <Dendrogram 
-                            dataset={dataset} 
-                            parentRef={RefSectionWrapper} />
+                <div className="container">
+                    <div className="breadcrumb">
+                        <div className="breadcrumb__item font-body">
+                            Keyword
+                        </div>
+                        <div className="breadcrumb__item">
+                            <img src="assets/chevron-right.svg" className="icon-arrow"/>
+                        </div>
+                        <div className="breadcrumb__item font-body">
+                            Related Questions
+                        </div>
                     </div>
+                    <div className="wrapper" ref={RefSectionWrapper}>
+                        {/* <Dendrogram 
+                            dataset={dataset} 
+                            parentRef={RefSectionWrapper} /> */}
+
+                        <img src="assets/dendrogram.svg" className="sample-img" onClick={ () => onClickDatapoint() } />
+                    </div>
+                    <div className="empty"></div>
                 </div>
                 {activeSecondaryRelations.length && <SectionSecondaryRelation onClickClose={onClickClose} /> }
             </div>
