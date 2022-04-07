@@ -20,7 +20,7 @@ const SectionCategories = () => {
     const animationEnter = () => { };
     const animationExit = () => { };
 
-    const categoriesComp = categories.map((item, index) => <Category key={index} categoryNum={index} categoryName={item} />);
+    const categoriesComp = categories.map((item, index) => <Category key={index} categoryNum={`0${++index}`} categoryName={item} />);
 
     return (
         <>
