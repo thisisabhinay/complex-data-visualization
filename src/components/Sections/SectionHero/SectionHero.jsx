@@ -26,7 +26,7 @@ const SectionHero = () => {
                         <h1 className="h1">
                             {content.title}
                         </h1>
-                        <h4 className="h4">
+                        <h4 className="h4 weight-medium">
                             {content.description}
                         </h4>
                         <div className="search-wrapper">
