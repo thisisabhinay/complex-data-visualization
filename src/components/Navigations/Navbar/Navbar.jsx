@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.sass";
+import Button from "../../Button/Button";
 
 const Navbar = ({ index, chart, metricName }) => {
     // STATES
@@ -16,7 +17,10 @@ const Navbar = ({ index, chart, metricName }) => {
             <div className="navbar-primary">
                 <img src="/assets/attryb.svg" className="logo-brand" />
                 <div className="navbar-priamry__menu">
-                    Schedule A Demo
+                    <Button 
+                        classList="btn-primary"
+                        label="Book Demo" 
+                    />
                 </div>
             </div>
         </>
