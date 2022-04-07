@@ -50,7 +50,7 @@ const SectionPrimaryRelation = ({ dataset }) => {
                     </div>
                     <div className="empty"></div>
                 </div>
-                {activeSecondaryRelations.length && <SectionSecondaryRelation onClickClose={onClickClose} /> }
+                {!!activeSecondaryRelations.length && <SectionSecondaryRelation onClickClose={onClickClose} /> }
             </div>
         </>
     );
