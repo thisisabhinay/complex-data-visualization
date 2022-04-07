@@ -25,10 +25,10 @@ const SectionMetrics = () => {
                 <div className="container">
                     <div className="wrapper">
                         <div className="row section-header">
-                            <div className="page-title">
+                            <div className="page-title h1 weight-bold">
                                 <p>Metrics for <em>keyword</em></p>
                             </div>
-                            <div className="metrics-intro__text">
+                            <div className="metrics-intro__text font-body weight-regular">
                                 <p>
                                     To succeed in the future, organizations must abandon pre-pandemic thinking. Balancing new and existing employee expectations, along with the pressures to innovate, be agile, and cultivate deep customer loyalty requires a new approach.
                                 </p>
