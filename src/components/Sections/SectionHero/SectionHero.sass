@@ -1,11 +1,25 @@
 @import "../../../global_sass/variables.sass"
 
 .section-hero
-    background: url("../../../../public/assets/hero_bg.png")
+    // background: url("../../../../public/assets/hero_bg.png")
+    background: url("https://techcrunch.com/wp-content/uploads/2021/02/GettyImages-1254825733-1.jpg?w=1390&crop=1")
     background-position: center center
     background-size: cover
     background-repeat: no-repeat
     color: $white
+    position: relative
+    z-index: 0
+
+    &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background: rgba(0,0,0,0.4)
+        backdrop-filter: blur(0.5rem)
+        z-index: 1
 
     .container
         align-items: center
@@ -13,6 +27,7 @@
         display: flex
         flex-direction: column
         padding: 1rem 0
+        z-index: 2
 
     .search-helper-text
         opacity: 0.8
