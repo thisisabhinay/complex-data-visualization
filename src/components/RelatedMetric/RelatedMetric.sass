@@ -1,27 +1,66 @@
 @import "../../global_sass/variables"
 
-.related-metric
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    align-items: flex-start
-    padding: .5rem 1rem
-    border: 1px solid $green
-    box-sizing: border-box
-    font-family: Inter
-    font-weight: bold
-    color: $white
-    width: 21rem
+$box-height: 20rem
 
-    .related-metric__num
-        font-style: italic
-        font-size: 1.75rem
-        line-height: 3.25rem
-        display: flex
-        align-items: center
+.related-metric-wrapper
+    overflow: hidden
 
-    .related-metric__name
-        font-size: 1.5rem
-        line-height: 1.75rem
+    &,
+    .related-metric,
+    .related-metric-detail
+        height: $box-height
+
+    &:hover
+        cursor: pointer
+        .related-metric-detail
+            z-index: 1
+            transform: translateY(-100%)
+
+            .related-metric__content
+                opacity: 1
+                transform: translateY(0%)
+
+    .related-metric
         display: flex
-        align-items: center
+        flex-direction: column
+        justify-content: space-between
+        align-items: flex-start
+        padding: 1rem
+        border: 1px solid $green
+        box-sizing: border-box
+        color: $white
+        width: auto
+        overflow: hidden
+        position: relative
+        transition: all 200ms ease-in-out
+
+        .related-metric__name
+            font-style: italic
+            display: flex
+            align-items: center
+
+        .related-metric__value
+            text-align: right
+            width: 100%
+
+        .related-metric__chart
+            .chart-img
+                width: 100%
+                height: auto
+
+    .related-metric-detail
+        background: linear-gradient(180deg, #00AA6D 0%, #008454 100%)
+        transition: all 200ms ease-in-out
+        padding: 1rem 1rem 2rem  1rem
+
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+
+        .related-metric__content
+            transform: translateY(50%)
+            opacity: 0
+            transition: all 400ms ease-in-out
+
+        .content-heading
+            margin: 0 0 0.5rem 0

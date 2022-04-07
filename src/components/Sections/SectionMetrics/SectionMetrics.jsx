@@ -6,12 +6,12 @@ import "./SectionMetrics.sass";
 const SectionMetrics = () => {
     // STATES
     const [metrics, setMetrics] = useState([
-        { name: "Search Volume", chart: "assets/areaGraph.png" },
-        { name: "Keyword Difficulty", chart: "assets/areaGraph.png" },
-        { name: "Cost-Per-Click", chart: "assets/areaGraph.png" },
+        { name: "Search Volume", chart: "assets/areaGraph.png", value: "2,456,119" },
+        { name: "Keyword Difficulty", chart: "assets/areaGraph.png", value: "86.1" },
+        { name: "Cost-Per-Click", chart: "assets/areaGraph.png", value: "$15.7" }
     ]);
 
-    const metricsComp = metrics.map((item, index) => <RelatedMetric index={index} key={index} chart={item.chart} metricName={item.name} />);
+    const relatedMetricsList = metrics.map((item, index) => <RelatedMetric index={index} key={index} chart={item.chart} metricName={item.name} metricValue={item.value} />);
 
     // FUNCTIONS
     const onEnter = () => { };
@@ -36,7 +36,7 @@ const SectionMetrics = () => {
                         </div>
 
                         <div className="row metrics">
-                            {metricsComp}
+                            {relatedMetricsList}
                         </div>
 
                         <div className="row">
