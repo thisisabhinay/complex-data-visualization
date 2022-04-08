@@ -45,7 +45,7 @@
         background: rgba(255, 255, 255, 0.01)
         box-shadow: 0 0 3.5rem rgba(0, 0, 0, 0.4)
         border-radius: 1rem 1rem 0 0
-        backdrop-filter: blur(3.25rem)
+        backdrop-filter: blur(0)
 
 
 
@@ -57,6 +57,10 @@
 
     .h1
         margin: 0 0 .5rem 0
+
+        &[data-anim="heading"]
+            transform: translateX(-1000%)
+            opacity: 0
 
         span
             color: $green
@@ -80,13 +84,12 @@
     height: 10rem
     background: transparentize($white, 0.6)
     align-items: center
-    transition: all 300ms ease-in-out
     position: relative
+    overflow: hidden
 
     .scroll-anim__filled
         width: .13rem
-        height: 50%
+        height: 5rem
         background: $white
-        transition: all 300ms ease-in-out
         position: absolute
-        top: 0
+        top: -100%
