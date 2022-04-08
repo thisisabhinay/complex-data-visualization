@@ -6,7 +6,7 @@ import "./SectionHero.sass";
 const SectionHero = () => {
     // STATES
     const [content, setContent] = useState({
-        title: "Discover what people are asking about…", 
+        title: "<span>Discover</span> what people are asking about…", 
         description: "Get instant, raw search insights, direct from the minds of your customers", 
         helper: "Enter a topic, brand or product・Use 1-2 words for best results"
     });
@@ -21,12 +21,16 @@ const SectionHero = () => {
         <>
             <div className="section section-hero">
                 <div className="container">
-                    <Navbar />
+                    <div className="section-header">
+                        <Navbar />
+                        <div className="hr"></div>
+                    </div>
+
                     <div className="wrapper">
                         <h1 className="h1">
-                            {content.title}
+                            <span className="weigh-bold">Discover</span> what people are asking about…
                         </h1>
-                        <h4 className="h4 weight-medium">
+                        <h4 className="h4 weight-regular">
                             {content.description}
                         </h4>
                         <div className="search-wrapper">
@@ -36,7 +40,9 @@ const SectionHero = () => {
                             {content.helper}
                         </p>
                     </div>
-                    <div className="empty" />
+                    <div className="scroll-anim">
+                        <div className="scroll-anim__filled"></div>
+                    </div>
                 </div>
             </div>
         </>
