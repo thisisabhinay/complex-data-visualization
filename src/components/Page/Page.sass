@@ -1,9 +1,21 @@
 @import "../../global_sass/variables"
-    
+
+.page
+    position: relative
+
 .section
     min-height: 100vh
     width: 100%
     display: flex
+    position: relative
+    // top: 100vh
+
+    &.parallel
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        z-index: -100
 
 .container
     width: 1080px

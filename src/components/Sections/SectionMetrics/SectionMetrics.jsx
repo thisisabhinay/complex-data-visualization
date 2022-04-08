@@ -3,7 +3,7 @@ import Navigation from "../../Navigations/Navigation/Navigation";
 import RelatedMetric from "../../RelatedMetric/RelatedMetric";
 import "./SectionMetrics.sass";
 
-const SectionMetrics = () => {
+const SectionMetrics = ({sectionMetricsRef}) => {
     // STATES
     const [metrics, setMetrics] = useState([
         { name: "Search Volume", chart: "assets/areaGraph.png", value: "2,456,119" },
@@ -21,7 +21,7 @@ const SectionMetrics = () => {
 
     return (
         <>
-            <div className="section section-metrics">
+            <div ref={sectionMetricsRef} className="section section-metrics">
                 <div className="container">
                     <div className="wrapper">
                         <div className="row section-header">

@@ -3,7 +3,7 @@ import Dendrogram from "../../Dendrogram/Dendrogram";
 import SectionSecondaryRelation from "../SectionSecondaryRelation/SectionSecondaryRelation";
 import "./SectionPrimaryRelation.sass";
 
-const SectionPrimaryRelation = ({ dataset }) => {
+const SectionPrimaryRelation = ({ sectionPrimaryRelationsRef, dataset }) => {
     // STATES
     const RefSectionWrapper = useRef(null);
     const [activeSecondaryRelations, setActiveSecondaryRelations] = useState([]);
@@ -28,7 +28,7 @@ const SectionPrimaryRelation = ({ dataset }) => {
 
     return (
         <>
-            <div className="section section-primary-relation">
+            <div ref={sectionPrimaryRelationsRef} className="section section-primary-relation">
                 <div className="container">
                     <div className="breadcrumb">
                         <div className="breadcrumb__item font-body">

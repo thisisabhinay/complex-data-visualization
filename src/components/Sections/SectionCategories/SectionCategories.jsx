@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Category from "./Category/Category";
 import "./SectionCategories.sass";
 
-const SectionCategories = () => {
+const SectionCategories = ({sectionCategoriesRef}) => {
     // STATES
     const [categories, setCategories] = useState([
         "Category Name",
@@ -24,7 +24,7 @@ const SectionCategories = () => {
 
     return (
         <>
-            <div className="section section-categories">
+            <div ref={sectionCategoriesRef} className="section section-categories">
                 <div className="container">
                     <div className="wrapper">
                         <div className="page-title h1">

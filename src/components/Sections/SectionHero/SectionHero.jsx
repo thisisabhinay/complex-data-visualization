@@ -4,7 +4,7 @@ import Search from "../../Search/Search";
 import Navbar from "../../Navigations/Navbar/Navbar";
 import "./SectionHero.sass";
 
-const SectionHero = () => {
+const SectionHero = ({sectionHeroRef}) => {
     // STATES
     const [content, setContent] = useState({
         title: "<span>Discover</span> what people are asking about…", 
@@ -105,7 +105,7 @@ const SectionHero = () => {
 
     return (
         <>
-            <div className="section section-hero">
+            <div ref={sectionHeroRef} className="section section-hero">
                 <div data-anim="frosted-glass" className="container">
                     <div data-anim="header" className="section-header">
                         <Navbar />
