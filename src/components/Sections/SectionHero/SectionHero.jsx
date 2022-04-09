@@ -16,28 +16,37 @@ const SectionHero = ({sectionHeroRef}) => {
     
     // FUNCTIONS
     animations.animScrollTo = () => {
-        anime({
-            targets: ".section-hero [data-anim=\"scroll-to\"]",
-            translateY: "300%",
-            loop: 2,
-            easing: "spring(1, 80, 10, 0)",
-            duration: 2000,
-            delay: 1500
+        let tl = anime.timeline({
+            easing: "easeOutExpo",
+            duration: 1500,
+            loop: 5
         });
+
+        tl
+            .add({
+                targets: ".section-hero [data-anim=\"scroll-to\"]",
+                translateY: [0, "100%"],
+            })
+            .add({
+                targets: ".section-hero [data-anim=\"scroll-to\"]",
+                translateY: ["100%", "200%"],
+            }, "-=250");
+
+        tl.play();
     };
 
     animations.revealHeadlines = () => {
         anime({
             targets: ".section-hero [data-anim=\"heading\"]",
             translateX: ["-35%", 0],
-            easing: "easeInOutQuad",
+            easing: "easeOutExpo",
             duration: 500,
         });
 
         anime({
             targets: ".section-hero [data-anim=\"heading\"]",
             opacity: [0, 1],
-            easing: "easeInOutQuad",
+            easing: "easeOutExpo",
             duration: 500,
         });
     };
@@ -46,14 +55,14 @@ const SectionHero = ({sectionHeroRef}) => {
         anime({
             targets: ".section-hero [data-anim=\"description\"]",
             translateX: ["35%", 0],
-            easing: "easeInOutQuad",
+            easing: "easeOutExpo",
             duration: 500,
         });
 
         anime({
             targets: ".section-hero [data-anim=\"description\"]",
             opacity: [0, 1],
-            easing: "easeInOutQuad",
+            easing: "easeOutExpo",
             duration: 500,
         });
     };
@@ -62,7 +71,7 @@ const SectionHero = ({sectionHeroRef}) => {
         anime({
             targets: ".section-hero [data-anim=\"search\"]",
             translateY: ["50%", 0],
-            easing: "easeInOutQuad",
+            easing: "easeOutExpo",
             duration: 500,
             delay: 800
         });
@@ -70,7 +79,7 @@ const SectionHero = ({sectionHeroRef}) => {
         anime({
             targets: ".section-hero [data-anim=\"search\"]",
             opacity: [0, 1],
-            easing: "easeInOutQuad",
+            easing: "easeOutExpo",
             duration: 500,
             delay: 800
         });
