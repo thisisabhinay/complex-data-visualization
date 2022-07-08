@@ -12,11 +12,11 @@ const Button = ({ classList, label}) => {
     const animationExit = () => { };
 
     return (
-        <>
+        <React.Fragment>
             <div className={`font-button btn ${classList} `}>
                 {label}
             </div>
-        </>
+        </React.Fragment>
     );
 };
 
